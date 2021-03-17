@@ -32,12 +32,13 @@ fn main() {
 			match event {
 				Event::Closed => window.close(),
 				Event::KeyPressed {code, ..} => {
-					handle_key_press(
+					handle_keystrokes(
 						&mut w,
 						&mut a,
 						&mut s,
 						&mut d,
 						code,
+						true,
 					);
 
 					if w { sprite.set_position(Vector2f::new(sprite.position().x, sprite.position().y - SPEED)) };
@@ -46,12 +47,13 @@ fn main() {
 					if d { sprite.set_position(Vector2f::new(sprite.position().x + SPEED, sprite.position().y)) };
 				},
 				Event::KeyReleased {code, ..} => {
-					handle_key_release(
+					handle_keystrokes(
 						&mut w,
 						&mut a,
 						&mut s,
 						&mut d,
 						code,
+						false,
 					);
 				},
 				_ => ()
@@ -64,16 +66,12 @@ fn main() {
 	}
 }
 
-fn handle_key_press(w: &mut bool, a: &mut bool, s: &mut bool, d: &mut bool, code: Key) {
-	if code == Key::W { *w = true };
-	if code == Key::A { *a = true };
-	if code == Key::S { *s = true };
-	if code == Key::D { *d = true };
-}
-
-fn handle_key_release(w: &mut bool, a: &mut bool, s: &mut bool, d: &mut bool, code: Key) {
-	if code == Key::W { *w = false };
-	if code == Key::A { *a = false };
-	if code == Key::S { *s = false };
-	if code == Key::D { *d = false };
+fn handle_keystrokes(w: &mut bool, a: &mut bool, s: &mut bool, d: &mut bool, code: Key, is: bool) {
+	match code {
+		Key::W => *w = is,
+		Key::A => *a = is,
+		Key::S => *s = is,
+		Key::D => *d = is,
+		_ => ()
+	}
 }
