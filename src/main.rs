@@ -66,7 +66,14 @@ fn main() {
 	}
 }
 
-fn handle_keystrokes(w: &mut bool, a: &mut bool, s: &mut bool, d: &mut bool, code: Key, is: bool) {
+fn handle_keystrokes(
+	w: &mut bool,
+	a: &mut bool,
+	s: &mut bool,
+	d: &mut bool,
+	code: Key,
+	is: bool
+) {
 	match code {
 		Key::W => *w = is,
 		Key::A => *a = is,
