@@ -1,4 +1,4 @@
-# SFML With Rust
+# SFML With SFML Rust bindings
 
 #### Building
 
